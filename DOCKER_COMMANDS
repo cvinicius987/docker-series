@@ -25,7 +25,7 @@
 
 		docker rmi <<ID_ou_nome_da_imagem>>
 
-	Commitar alteraÃ§Ãµes em uma imagem
+	Commitar alterações em uma imagem
 
 		docker commit ID/apelido nome_da_nova_imagem
 
@@ -35,7 +35,7 @@
 
  ==== Containers
 
- 	 >>> CriaÃ§Ã£o
+ 	 >>> Criação
 
 		Criar um container
 
@@ -45,7 +45,7 @@
 
 			docker run -d -p 8000:80 ubuntu-nginxd --name nginx
 
-		Criar um container passando parametros de inicializaÃ§Ã£o:
+		Criar um container passando parametros de inicialização:
 
 			docker run -d -p 8000:80 ubuntu-nginx /usr/sbin/nginx -g "daemon off;"
 
@@ -71,13 +71,13 @@
 
 			docker run -d -p 8080:80 nginx /usr/sbin/nginx -g
 
-	>>> ManipulaÃ§Ã£o
+	>>> Manipulação
 
 		Remover um container
 
 			docker rm id_ou_apelido
 
-		InformaÃ§Ãµes de uso de Hardware do container:
+		Informações de uso de Hardware do container:
 
 			docker stats id_ou_apelido
 
@@ -120,7 +120,7 @@
 
  ============================= Trabalhando Registry
 	
-	CriaÃ§Ã£o do repositorio Nexus
+	Criação do repositorio Nexus
 	
 		Criar um repositorio do tipo (hosted) e expor um porta para push/pull (8011)
 			
