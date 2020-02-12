@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+			   						http://maven.apache.org/xsd/maven-4.0.0.xsd">
+			   						
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.exemplo</groupId>
+	<artifactId>docker-spotify</artifactId>
+	<version>1.0.0</version>
+	<packaging>war</packaging>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+    	<maven.compiler.target>1.8</maven.compiler.target>
+    
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		
+		<docker-maven-serverId>capitao_integration</docker-maven-serverId>
+		<docker-registry>172.31.48.171:8011</docker-registry>
+		<docker-repo>repo_name</docker-repo>
+	</properties>
+	
+	<dependencies>
+		<dependency>
+		    <groupId>javax</groupId>
+		    <artifactId>javaee-api</artifactId>
+		    <version>6.0</version>
+		    <scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!--  Geração do War -->
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			
+			<!--  Geração da Imagem docker -->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.3</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+						<version>1.1.1</version>
+					</dependency>
+					<dependency>
+					    <groupId>commons-codec</groupId>
+					    <artifactId>commons-codec</artifactId>
+					    <version>1.11</version>
+					</dependency>
+				</dependencies>
+				
+				<configuration>
+					<!-- Publicar no Servidor Registry -->
+					<serverId>${docker-maven-serverId}</serverId>
+					
+					<!-- Repository Name: Nome do ArtifactID -->
+					<repository>${docker-registry}/${docker-repo}</repository>
+					
+					<!-- Repository Tag: Versão do Pom.xml -->
+					<tag>${project.artifactId}-${project.version}</tag>
+									
+					<!-- Usa as configurações de autenticação do maven: settings.xml --> 
+					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<build>
+				
+			</build>
+		</profile>
+		<profile>
+			<id>homolog</id>
+			<build>
+				
+			</build>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<build>
+				
+			</build>
+		</profile>
+	</profiles>
+</project>

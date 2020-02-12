@@ -1,0 +1,154 @@
+
+============================= Principais Comandos Docker
+
+ ==== Images
+
+	Criando uma imagem (No diretorio corrente do arquivo Dockerfile)
+
+		docker build -t <<name_image>> .
+
+	Listar images
+
+		docker images
+		docker image list
+		docker image ls
+
+	Procurando images
+
+		docker search ubuntu
+
+	Adicionando images
+
+		docker pull ubuntu
+
+	Removendo images locais
+
+		docker rmi <<ID_ou_nome_da_imagem>>
+
+	Commitar alterações em uma imagem
+
+		docker commit ID/apelido nome_da_nova_imagem
+
+	Removendo todas as imagens de uma vez
+
+		docker rmi $(docker images -q)
+
+ ==== Containers
+
+ 	 >>> Criação
+
+		Criar um container
+
+			docker run nome_da_imagem
+
+		Criar um container:
+
+			docker run -d -p 8000:80 ubuntu-nginxd --name nginx
+
+		Criar um container passando parametros de inicialização:
+
+			docker run -d -p 8000:80 ubuntu-nginx /usr/sbin/nginx -g "daemon off;"
+
+		Criar um container e entrar no Terminal
+
+			docker run -it ubuntu /bin/bash
+
+		Criar um container com um apelido
+
+			docker run --name ubuntinho ubuntu
+
+		Verificar o estado ou encontrar o ID de um container
+
+			docker ps
+
+			docker ps -a
+
+		Montar containers auto destrutivos (Usando o comando --rm, podemos montar containers que se destroem ao sairmos da sessao.)
+
+			docker run -it --rm -p 8080:80 nginx /bin/bash
+
+		Executando containers em segundo plano
+
+			docker run -d -p 8080:80 nginx /usr/sbin/nginx -g
+
+	>>> Manipulação
+
+		Remover um container
+
+			docker rm id_ou_apelido
+
+		Informações de uso de Hardware do container:
+
+			docker stats id_ou_apelido
+
+		Mapeando uma porta para o container
+
+			docker run -it -p 8080:80 ubuntu
+
+		Parar um container
+
+			docker stop id_ou_apelido
+
+		Ligar um container
+
+			docker start id_ou_apelido
+
+		Removendo todos os containers e imagens de uma vez
+
+			docker rm $(docker ps -qa)
+
+	>>> SSH e Acesso
+
+		Como executar comandos, sem precisar estar dentro do container?
+		
+			sudo docker exec -it <<container_name>> /bin/bash
+
+		Vendo logs de um container
+
+			docker logs -f <<container_id_or_name>>
+
+		Conectando a um Console no Container
+
+			docker exec -it <container name> /bin/bash
+
+		Transferindo arquivos para o container
+
+			docker cp foo.txt mycontainer:/foo.txt
+
+			docker cp mycontainer:/foo.txt foo.txt
+
+
+ ============================= Trabalhando Registry
+	
+	Criação do repositorio Nexus
+	
+		Criar um repositorio do tipo (hosted) e expor um porta para push/pull (8011)
+			
+ 	Login no repositorio remoto
+ 		
+ 		docker login <<repositorio>>
+ 		
+ 	Baixar uma imagem local
+ 	
+ 		docker pull <<nome_imagem>>
+	
+	Realizar a autenticacao
+
+		docker login <<repo_host>>:<<repo port from docker>>
+
+	Criacao da Tag
+	
+		docker tag <<id_img>> <<repo_host>>:<<repo port from docker>>/<<img_name>>:<tag name>
+	
+	Realizar o Push
+
+		docker push <<img_name>>
+	
+	Realizar o Pull
+
+		docker pull <<repo_host>>:<<repo port from docker>>/<<img_name>>:<tag_name>
+		
+	Criando uma imagem a partir de um container
+	
+		docker commit <<ID_container>> <<images>>:<<version tag>>
+		
