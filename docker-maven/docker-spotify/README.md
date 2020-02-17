@@ -1,6 +1,4 @@
-# Spotify Plugin
-
-### Execução
+## Docker Spotify Maven Plugin
 
 #### Gerando a Imagem:
 

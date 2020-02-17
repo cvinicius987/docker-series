@@ -1,6 +1,4 @@
-# Jib Maven Plugin
-
-### Execução
+## Docker Jib Maven Plugin
 
 #### Gerando e Publicando a Imagem:
 
