@@ -17,9 +17,14 @@
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		
-		<docker-maven-serverId>capitao_integration</docker-maven-serverId>
-		<docker-registry>172.31.48.171:8011</docker-registry>
-		<docker-repo>repo_name</docker-repo>
+		<!-- Maven ServerID (settings.xml) -->
+		<docker-maven-serverId></docker-maven-serverId>
+		
+		<!-- Docker Registry -->
+		<docker-registry></docker-registry>
+		
+		<!-- Docker Repo name -->
+		<docker-repo></docker-repo>
 	</properties>
 	
 	<dependencies>
@@ -85,25 +90,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-	<profiles>
-		<profile>
-			<id>dev</id>
-			<build>
-				
-			</build>
-		</profile>
-		<profile>
-			<id>homolog</id>
-			<build>
-				
-			</build>
-		</profile>
-		<profile>
-			<id>prod</id>
-			<build>
-				
-			</build>
-		</profile>
-	</profiles>
 </project>
