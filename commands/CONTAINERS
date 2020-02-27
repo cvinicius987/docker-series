@@ -1,38 +1,4 @@
 
-============================= Principais Comandos Docker
-
- ==== Images
-
-	Criando uma imagem (No diretorio corrente do arquivo Dockerfile)
-
-		docker build -t <<name_image>> .
-
-	Listar images
-
-		docker images
-		docker image list
-		docker image ls
-
-	Procurando images
-
-		docker search ubuntu
-
-	Adicionando images
-
-		docker pull ubuntu
-
-	Removendo images locais
-
-		docker rmi <<ID_ou_nome_da_imagem>>
-
-	Commitar alterações em uma imagem
-
-		docker commit ID/apelido nome_da_nova_imagem
-
-	Removendo todas as imagens de uma vez
-
-		docker rmi $(docker images -q)
-
  ==== Containers
 
  	 >>> Criação
@@ -116,39 +82,3 @@
 			docker cp foo.txt mycontainer:/foo.txt
 
 			docker cp mycontainer:/foo.txt foo.txt
-
-
- ============================= Trabalhando Registry
-	
-	Criação do repositorio Nexus
-	
-		Criar um repositorio do tipo (hosted) e expor um porta para push/pull (8011)
-			
- 	Login no repositorio remoto
- 		
- 		docker login <<repositorio>>
- 		
- 	Baixar uma imagem local
- 	
- 		docker pull <<nome_imagem>>
-	
-	Realizar a autenticacao
-
-		docker login <<repo_host>>:<<repo port from docker>>
-
-	Criacao da Tag
-	
-		docker tag <<id_img>> <<repo_host>>:<<repo port from docker>>/<<img_name>>:<tag name>
-	
-	Realizar o Push
-
-		docker push <<img_name>>
-	
-	Realizar o Pull
-
-		docker pull <<repo_host>>:<<repo port from docker>>/<<img_name>>:<tag_name>
-		
-	Criando uma imagem a partir de um container
-	
-		docker commit <<ID_container>> <<images>>:<<version tag>>
-		

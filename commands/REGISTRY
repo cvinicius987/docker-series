@@ -1,0 +1,34 @@
+ ============================= Trabalhando Registry
+	
+	Criação do repositorio Nexus
+	
+		Criar um repositorio do tipo (hosted) e expor um porta para push/pull (8011)
+			
+ 	Login no repositorio remoto
+ 		
+ 		docker login <<repositorio>>
+ 		
+ 	Baixar uma imagem local
+ 	
+ 		docker pull <<nome_imagem>>
+	
+	Realizar a autenticacao
+
+		docker login <<repo_host>>:<<repo port from docker>>
+
+	Criacao da Tag
+	
+		docker tag <<id_img>> <<repo_host>>:<<repo port from docker>>/<<img_name>>:<tag name>
+	
+	Realizar o Push
+
+		docker push <<img_name>>
+	
+	Realizar o Pull
+
+		docker pull <<repo_host>>:<<repo port from docker>>/<<img_name>>:<tag_name>
+		
+	Criando uma imagem a partir de um container
+	
+		docker commit <<ID_container>> <<images>>:<<version tag>>
+		

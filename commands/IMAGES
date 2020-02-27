@@ -1,0 +1,35 @@
+
+============================= Principais Comandos Docker
+
+ ==== Images
+
+	Criando uma imagem (No diretorio corrente do arquivo Dockerfile)
+
+		docker build -t <<name_image>> .
+
+	Listar images
+
+		docker images
+		docker image list
+		docker image ls
+
+	Procurando images
+
+		docker search ubuntu
+
+	Adicionando images
+
+		docker pull ubuntu
+
+	Removendo images locais
+
+		docker rmi <<ID_ou_nome_da_imagem>>
+
+	Commitar alterações em uma imagem
+
+		docker commit ID/apelido nome_da_nova_imagem
+
+	Removendo todas as imagens de uma vez
+
+		docker rmi $(docker images -q)
+		
